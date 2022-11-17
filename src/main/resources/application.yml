@@ -29,4 +29,4 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
   batch:
     jdbc:
-      initialize-schema: embedded  #spring batch 메타 데이터 생성
+      initialize-schema: always  #spring batch 메타 데이터 생성
