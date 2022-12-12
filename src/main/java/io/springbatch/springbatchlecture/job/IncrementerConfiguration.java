@@ -5,14 +5,13 @@
 //import org.springframework.batch.core.Step;
 //import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 //import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-//import org.springframework.batch.core.job.DefaultJobParametersValidator;
 //import org.springframework.batch.repeat.RepeatStatus;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //
 //@RequiredArgsConstructor
 //@Configuration
-//public class ValidatorConfiguration {
+//public class IncrementerConfiguration {
 //
 //    private final JobBuilderFactory jobBuilderFactory;
 //    private final StepBuilderFactory stepBuilderFactory;
@@ -22,9 +21,7 @@
 //        return this.jobBuilderFactory.get("batchJob")
 //                .start(step1())
 //                .next(step2())
-//                .next(step3())
-////                .validator(new CustomJobParametersValidator())
-//                .validator(new DefaultJobParametersValidator(new String[]{"name", "date"}, new String[]{"count"}))
+//                .incrementer(new CustomJobParametersIncrementer())
 //                .build();
 //    }
 //
@@ -49,15 +46,6 @@
 //                .build();
 //    }
 //
-//
-//    @Bean
-//    public Step step3() {
-//        return stepBuilderFactory.get("step3")
-//                .tasklet(((contribution, chunkContext) -> {
-//                    return RepeatStatus.FINISHED;
-//                }))
-//                .build();
-//    }
 //
 //
 //}
