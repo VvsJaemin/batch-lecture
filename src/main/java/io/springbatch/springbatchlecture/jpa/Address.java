@@ -1,26 +1,25 @@
 package io.springbatch.springbatchlecture.jpa;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Getter
 @Setter
 @Entity
-public class Customer {
+public class Address {
 
     @Id
     @GeneratedValue
     private Long id;
-    private String username;
-    private int age;
+    private String location;
 
-    @OneToOne(mappedBy = "customer")
-    private Address address;
-
+    @OneToOne
+    @JoinColumn(name = "custom_id")
+    private Customer customer;
 }
