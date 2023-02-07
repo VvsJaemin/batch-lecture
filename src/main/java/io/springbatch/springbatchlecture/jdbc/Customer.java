@@ -9,4 +9,11 @@ public class Customer {
     private String lastName;
 
     private String birthdate;
+
+    public Customer(Long id, String firstName, String lastName, String birthdate) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthdate = birthdate;
+    }
 }
