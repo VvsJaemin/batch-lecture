@@ -12,15 +12,11 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
-import org.springframework.batch.item.support.CompositeItemProcessor;
-import org.springframework.batch.item.support.builder.CompositeItemProcessorBuilder;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
@@ -53,22 +49,16 @@ public class CompositionItemConfiguration {
                         return i > 10 ? null : "Item";
                     }
                 })
-                .processor(customItemProcessor())
+                .processor(new ItemProcessor<String, String>() {
+                    @Override
+                    public String process(String s) throws Exception {
+                        return null;
+                    }
+                })
                 .writer(items-> System.out.println("items = " + items))
                 .build();
     }
 
-    @Bean
-    public ItemProcessor<? super String, String> customItemProcessor() {
-        List itemProcessor = new ArrayList<>();
-
-        itemProcessor.add(new CustomItemProcessor());
-        itemProcessor.add(new CustomItemProcessor2());
-
-        return new CompositeItemProcessorBuilder<>()
-                .delegates(itemProcessor)
-                .build();
-    }
 
 
 }
